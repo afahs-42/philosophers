@@ -6,7 +6,7 @@
 /*   By: afahs <afahs@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 15:55:16 by afahs             #+#    #+#             */
-/*   Updated: 2025/09/10 07:40:07 by afahs            ###   ########.fr       */
+/*   Updated: 2025/09/10 08:26:00 by afahs            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,9 @@ int	parse_arguments(int argc, char **argv, t_data *data)
 	data->time_to_sleep = ft_atoi(argv[4]);
 	if (argc == 6)
 		data->nb_meals = ft_atoi(argv[5]);
+	else
+		data->nb_meals = -1;
 	data->dead_flag = 0;
 	data->all_ate_flag = 0;
-	return (0);
+	return (1);
 }

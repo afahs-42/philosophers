@@ -6,7 +6,7 @@
 /*   By: afahs <afahs@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 15:55:41 by afahs             #+#    #+#             */
-/*   Updated: 2025/09/10 08:09:06 by afahs            ###   ########.fr       */
+/*   Updated: 2025/09/10 08:26:17 by afahs            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	philosopher_eat(t_philo *philo)
 	print_status(philo, EATING);
 	pthread_mutex_lock(&philo->data->meal_mutex);
 	philo->last_meal_time = get_time();
+	philo->meals_eaten++;
 	pthread_mutex_unlock(&philo->data->meal_mutex);
 	precise_usleep(philo->data->time_to_eat);
 	pthread_mutex_unlock(&philo->data->forks[philo->left_fork_id]);
