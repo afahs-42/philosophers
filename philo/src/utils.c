@@ -6,7 +6,7 @@
 /*   By: afahs <afahs@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 15:56:14 by afahs             #+#    #+#             */
-/*   Updated: 2025/09/10 07:26:56 by afahs            ###   ########.fr       */
+/*   Updated: 2025/09/10 08:44:10 by afahs            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,13 @@ void	precise_usleep(long microseconds)
 int	is_dead(t_data *data)
 {
 	int	dead;
+	int	all_ate;
 
 	pthread_mutex_lock(&data->dead_mutex);
 	dead = data->dead_flag;
+	all_ate = data->all_ate_flag;
 	pthread_mutex_unlock(&data->dead_mutex);
-	return (dead);
+	return (dead || all_ate);
 }
 
 void	print_status(t_philo *philo, char *status)

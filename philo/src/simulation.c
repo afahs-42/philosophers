@@ -6,7 +6,7 @@
 /*   By: afahs <afahs@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 15:55:41 by afahs             #+#    #+#             */
-/*   Updated: 2025/09/10 08:26:17 by afahs            ###   ########.fr       */
+/*   Updated: 2025/09/10 08:44:41 by afahs            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 void	take_forks(t_philo *philo)
 {
-	if (philo->id % 2 == 0)
+	int	first_fork;
+	int	second_fork;
+
+	first_fork = philo->left_fork_id;
+	second_fork = philo->right_fork_id;
+	if (first_fork > second_fork)
 	{
-		pthread_mutex_lock(&philo->data->forks[philo->right_fork_id]);
-		print_status(philo, TAKE_FORK);
-		pthread_mutex_lock(&philo->data->forks[philo->left_fork_id]);
-		print_status(philo, TAKE_FORK);
+		first_fork = philo->right_fork_id;
+		second_fork = philo->left_fork_id;
 	}
-	else
-	{
-		pthread_mutex_lock(&philo->data->forks[philo->left_fork_id]);
-		print_status(philo, TAKE_FORK);
-		pthread_mutex_lock(&philo->data->forks[philo->right_fork_id]);
-		print_status(philo, TAKE_FORK);
-	}
+	pthread_mutex_lock(&philo->data->forks[first_fork]);
+	print_status(philo, TAKE_FORK);
+	pthread_mutex_lock(&philo->data->forks[second_fork]);
+	print_status(philo, TAKE_FORK);
 }
 
 void	philosopher_eat(t_philo *philo)
@@ -48,6 +48,8 @@ void	philosopher_sleep_think(t_philo *philo)
 	print_status(philo, SLEEPING);
 	precise_usleep(philo->data->time_to_sleep);
 	print_status(philo, THINKING);
+	if (philo->data->nb_philo % 2 == 1)
+		precise_usleep(10);
 }
 
 void	*philosopher_routine(void *arg)
