@@ -6,11 +6,11 @@
 /*   By: afahs <afahs@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 15:55:16 by afahs             #+#    #+#             */
-/*   Updated: 2025/09/08 16:25:33 by afahs            ###   ########.fr       */
+/*   Updated: 2025/09/10 07:40:07 by afahs            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philo.h>
+#include "philo.h"
 
 int	ft_atoi(const char *str)
 {
@@ -66,7 +66,7 @@ static int	validate_args(int argc, char **argv)
 			return (printf("Error: Invalid arg %s", argv[i]), 0);
 		i++;
 	}
-	if (ft_atoi(argv[1] > 200))
+	if (ft_atoi(argv[1]) > 200)
 		return (printf("Error to many philos [max 200]"), 0);
 	return (1);
 }

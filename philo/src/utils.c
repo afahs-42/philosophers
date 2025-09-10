@@ -6,11 +6,11 @@
 /*   By: afahs <afahs@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 15:56:14 by afahs             #+#    #+#             */
-/*   Updated: 2025/09/08 20:26:47 by afahs            ###   ########.fr       */
+/*   Updated: 2025/09/10 07:26:56 by afahs            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philo.h>
+#include "philo.h"
 
 long	get_time(void)
 {

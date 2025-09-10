@@ -6,11 +6,11 @@
 /*   By: afahs <afahs@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 15:55:41 by afahs             #+#    #+#             */
-/*   Updated: 2025/09/10 04:07:27 by afahs            ###   ########.fr       */
+/*   Updated: 2025/09/10 08:09:06 by afahs            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philo.h>
+#include "philo.h"
 
 void	take_forks(t_philo *philo)
 {
@@ -30,7 +30,7 @@ void	take_forks(t_philo *philo)
 	}
 }
 
-void	philospher_eat(t_philo *philo)
+void	philosopher_eat(t_philo *philo)
 {
 	take_forks(philo);
 	print_status(philo, EATING);

@@ -6,11 +6,11 @@
 /*   By: afahs <afahs@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 15:55:31 by afahs             #+#    #+#             */
-/*   Updated: 2025/09/08 16:41:38 by afahs            ###   ########.fr       */
+/*   Updated: 2025/09/10 07:26:31 by afahs            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philo.h>
+#include "philo.h"
 
 int	init_mutexes(t_data *data)
 {
