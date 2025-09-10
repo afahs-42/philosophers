@@ -6,7 +6,7 @@
 /*   By: afahs <afahs@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 15:55:41 by afahs             #+#    #+#             */
-/*   Updated: 2025/09/10 03:56:44 by afahs            ###   ########.fr       */
+/*   Updated: 2025/09/10 04:07:27 by afahs            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,37 @@ void	*philosopher_routine(void *arg)
 	philo = (t_philo *)arg;
 	if (philo->id % 2 == 0)
 		precise_usleep(philo->data->time_to_eat / 2);
+	while (!is_dead(philo->data))
+	{
+		philosopher_eat(philo);
+		if (is_dead(philo->data))
+			break ;
+		philosopher_sleep_think(philo);
+	}
+	return (NULL);
+}
+
+int	start_simulation(t_data *data)
+{
+	int			i;
+	pthread_t	monitor_thread;
+
+	if (pthread_create(&monitor_thread, NULL, monitor_routine, data))
+		return (0);
+	i = 0;
+	while (i < data->nb_philo)
+	{
+		if (pthread_create(&data->philos[i].thread, NULL,
+				philosopher_routine, &data->philos[i]))
+			return (0);
+		i++;
+	}
+	pthread_join(monitor_thread, NULL);
+	i = 0;
+	while (i < data->nb_philo)
+	{
+		pthread_join(data->philos[i].thread, NULL);
+		i++;
+	}
+	return (1);
 }
